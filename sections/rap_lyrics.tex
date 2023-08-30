@@ -1,0 +1,121 @@
+\section{Modelling Rap Lyrics}
+\label{sec:modelling-rap}
+
+When one is looking to model a some sub-category of language, whether it'd be for research, teaching, ML or other purposes, the importance of initially outlining the most fundamental elements to the target you are trying to emulate, cannot be understated. In terms of automatic (lyric) generation, this is of course particularly important you are looking to design a template-based system \cite{Goncalo2012PoeTryMe}, but also, as in our case, if you are designing an neural network model. Knowing the general structure and tendencies helps inform both the model training, the generation and the evaluation process. For rap lyrics generation, a clear example of this is the universal importance of \textit{rhyming}. Not only is it a defining aspect of the genre as a whole, it has also, as has been mentioned, been shown to be a key identifier in identifying any given rapper’s style \cite{potash-etal-2015-ghostwriter}, further cementing its importance to the genre.
+
+On the basis of this, I will now be going over the general anatomy of rap lyrics, including a closer examination of rhymes, after which I will delve into how this knowledge might be advantageously applied to within our experimental process, both with regards to processing our data and developing our model.
+
+\subsection{Anatomy of Rap Lyrics}
+\label{sec:anatomy-of-rap}
+
+Rap in particular is a very interesting subject in that behind its prevailing reputation of being shallow and even obscene, (which granted, as with all genres, it sometimes is), lies a lot of depth which is unique to the genre. Not only does it have a rich history, which has played a big part in making rap what it is today, it also sets itself apart with its unique structures, phrases/slang, rhythm, rhymes, etc. In some ways, it has managed to revive and modernize the fading art of poetry, infusing it with musical beats and tunes, creating a entirely new form of artistic expression.
+
+\subsubsection{Structure}
+\paragraph{Song Sections:\\[6pt]}
+\label{para:song-components}
+
+As with all other music, rap songs are made up of different sections, which are as follows: the main components are \textit{verses} and \textit{choruses/hooks} and, to a slightly lesser extent, \textit{bridges}. Other than that, some less commonly used/less important ones are \textit{intros}, \textit{outros}, \textit{pre-choruses} and \textit{interludes}. These sections in turn consist of \textit{bars}, of which there are commonly \textit{16} for each section. Most of these bars will be unique and make up the verses, bridges, intros and outros etc., while some will be repeated as choruses/hooks. Let us quickly go over what each of these main components look like and what role they play in the song, as well as what \textit{bars} are.
+
+\paragraph{Bars}
+have multiple meanings in the rap vernacular. Most often, you might hear bars referred to in the context of "spitting bars" or "dropping some sick bars", in which case they might refer to whole lyrics, verses or even single lines, and are generally used interchangeably with \textit{lyrics}. In a more technical sense, bars are units of measurement, time, denoting the number of beats played at a specific tempo \cite{RapBars2022}. In rap lyrics, this is almost always 4/4, meaning 4 beats per bar.\footnote{In rap music, the drum beat usually falls on beat 1 on every bar, information which helps the rapper in timing different points of syllable emphasis in his/hers lyrics. This and other rhythmic points of interested will, however, not be discussed further in this paper, as the focus is on the textual aspects of rap lyrics, making them outside the scope of the study. For more information regarding rap music theory, visit \cite{RapBars2022}, \cite{RapAnalysis2014}.}
+
+\paragraph{Verse}
+A verse of a rap song, as with most other type of songs, is the meat an potatoes. It is the part of the song which hooks in the listener and provides great bars in-between the highlights of the chorus. Especially the first verse of the song is an important part of setting the tone, even more so if there the song has no intro. Verses are usually the most diverse song parts both lyrically and syntactically, and are the points at which the rapper is able tell a/their story. It also has a lower rate of repetition than the chorus, and is therefore also the most lexically rich part of the song, baring a long intros / outros.
+
+\paragraph{Chorus}
+The chorus is the delicious desert which you get when you've finished the meat and potatoes of the verses. Generally, the chorus is made from a verse that the rapper feels is particularly good, and is then simply repeated multiple times throughout the song, the frequency with which we will go over in \hyperref[para:song-structure]{a moment}. A common strategy with choruses is to have them be short verses, usually of 4-8 bars, which are then repeated twice, making up a single chorus, sometimes with small lexical alterations to the repeated sections. For choruses there is usually a heavy focus on being catchy and easy on the ear, hence them being referred to as \textit{hooks}.
+
+\paragraph{Song Structure:\\[6pt]}
+\label{para:song-structure}
+
+Syntactically, rap sets itself apart from other types of music in the way it is able to mix elements of conversation and “regular” music, with rhyming structures and schemes commonly found in poetry. If we look at Eminem’s “Lose Yourself”, as can be seen in \cref{tab:lose-yourself-lyrics}, it follows a very common structure of "$INTRO \rightarrow VERSE \rightarrow CHORUS \rightarrow VERSE \rightarrow CHORUS \rightarrow VERSE \rightarrow CHORUS \rightarrow OUTRO$". Aside from the intro and outro, which are arguably, much as their name suggests, an \textit{introduction} and a \textit{outroduction} made before and after the song, this is a type of structure which is employed in many different genres. For rap, it excels in that it is very straight forward to listen to, allowing the listener to quickly accustom themselves to the repeated pattern, while also presenting a good mix of repetitive beats and rhymes, allowing for some differentiation and story-telling in-between. Due to the often poem-like structure of rap verses, with regards to rhyme schemes etc., this structure might be considered the most natural amalgamation of poetry and song, verses representing the poem stanzas and choruses/hooks the catchy and recognizable musical input, both doing so on the lyrical as well as the melodic level.
+
+Another common song structure found in rap songs, and quite uniquely so, is the one frequently used in \textit{diss-tracks}\footnote{Song's made by an artist specifically to insult one or more other artists.}. The structure simply consists of either a single very long verse e.g., "$INTRO \rightarrow VERSE \rightarrow OUTRO$", or series of verses with no choruses in-between e.g. "$VERSE \rightarrow VERSE \rightarrow VERSE \rightarrow VERSE$". Examples of these types of structures can be found in Eminem’s “Killshot” or Lil’ Dicky’s song “Bruh”. With regards to their story-telling, these structures are more akin to prose or, historically, epics, in that the story they tell is not broken up and interjected between choruses, but rather sampled in one place. They are furthermore unique in that the role of the music is pushed very much to the background, sometimes almost to the point of irrelevance. This type of structure is certainly one of the most unique within music as a whole, as much so as to make comparisons to other types of songs seem less accurate than comparisons to, say, \textit{poetry recitals} or even \textit{public speeches}.
+
+There are also other types of song structures such as Lil' Dicky's "Lemme Freak" "$VERSE \rightarrow PRECHORUS \rightarrow CHORUS \cdot 3$", which includes different versions of a \textit{pre-chorus}, always preceding the the chorus. Furthermore, there are also a number of other less common structures, such as "$VERSE \rightarrow VERSE \rightarrow BRIDGE \rightarrow VERSE$" and "$VERSE \rightarrow CHORUS \rightarrow VERSE \rightarrow CHORUS \rightarrow BRIDGE \rightarrow CHORUS$".
+
+\subsubsection{Rhyming}
+\label{sec:rhyme+rhyme-schemes}
+
+Rhymes are one of the most recognizable and fundamental features of rap songs, and vary both in the type in rhyme scheme they are situated in, but also in what makes them a rhyme, a definition which has evolved over time. Very generally, rhymes are repetitions of similar sounds in two or more words, such as \textit{neu\textbf{ral}} and \textit{plu\textbf{ral}}. There are of course exceptions and nuances to this rule of thumb, some of which we will cover momentarily, but this definition is a good anchor point from which to explore rhyming. Before we dive into the different types of rhyme schemes that are used by rappers, and what each of these excel at doing, let us start off by examining the aforementioned nuances that exist in rhyming, both in terms of their \textbf{placement} in the text and their \textbf{phonetic} characteristics.
+
+\paragraph{Perfect Rhymes:\\[6pt]}
+\label{para:perfect-rhymes}
+
+Perfect rhymes can be thought of as belonging to three different categories: \textbf{single} rhymes, \textbf{double} rhymes and \textbf{dactylic} rhymes, depending on the location of finally stressed syllable. In our case, however, it is enough to simply think of them as rhymes in which the finally stressed syllables of the rhyming words are identical, such as the classic \textit{h\textbf{at}} and \textit{c\textbf{at}}.
+
+\paragraph{Assonance Rhymes:\\[6pt]}
+\label{para:assonance-rhymes}
+
+Arguably the most important type of rhyme for rap lyrics especially is what is known as \textit{assonance rhymes}. These are rhymes in which only the vowel sound is shared across words, as in “crazy” and “baby” \cite{Malmi_2016}. The reason for the importance of assonance rhymes is their versatility, as they allow for a much wider range of possible rhymes than perfect rhymes do. This is what makes them the most widely used type of rhyme in rap songs and also arguably the type used most creatively. Assonance rhymes can also be what is called \textit{multisyllabic}, meaning that the rhyme spans multiple syllables, as can be seen in \hyperref[tab:lose-yourself-lyrics]{lines 9 \& 10}\footnote{The entirety of the lyrics for the referenced song "Lose Yourself" by Eminem can be found in \cref{tab:lose-yourself-lyrics} in the \cref{chap:appendix}}:
+
+\begin{quote}\small{
+    “…the whole crowd \textbf{goes} so \textbf{loud}” \\
+    “…but the words \textbf{won’t} come \textbf{out}“.}
+\end{quote}
+
+These types of can be used by rappers to really flex their rhyming abilities and are therefore key to judging the quality of a piece of rap lyrics.
+
+\paragraph{Other Rhyme Types:\\[6pt]}
+\label{para:other-rhyme-types}
+
+These types of rhymes are, very simply put, ones that does not quite live up to the perfect rhyme, in that they might have phonetic similarities, while not having identical stressed syllables. There are many different kinds of rhymes in this category, such as \textit{imperfect rhymes} (fl\textbf{ing} and star\textbf{ing}), \textit{slant rhymes} (ha\textbf{nd} an le\textbf{nd}, alliteration (\textbf{pi}ed and \textbf{pi}per) etc., but the most important one for rap lyrics is \textit{assonance rhymes}.
+
+\paragraph{End Rhymes:\\[6pt]}
+\label{para:end-rhymes}
+
+End rhymes are, as the name suggests, rhymes that appear at the lines, and are probably the most widely known type of rhymes. An example of an end rhyme can be seen in \hyperref[tab:lose-yourself-lyrics]{lines 21 \& 22}: 
+
+\begin{quote}\small{
+    "...you better never let it \boldblue{go}” \\
+    “...do not miss your chance to \boldblue{blow}}
+\end{quote}
+
+\paragraph{Internal Rhymes\\[6pt]}
+\label{para:internal-rhymes}
+
+Internal rhymes are rhymes in which at least one of the words does not appear at the end of a sentence, as in \hyperref[tab:lose-yourself-lyrics]{line 5}:
+\begin{quote}\small{
+    “his palms are \boldblue{sweaty}, knees weak, arms are \boldblue{heavy}”}
+\end{quote}
+
+This song in particular is one of the most prominent and impressive examples of the use of internal rhymes, which can be found throughout the song, in practically every set of bars. These can also be extended and combined with end rhymes, as the previous line continues in \hyperref[tab:lose-yourself-lyrics]{line 6}:
+
+\begin{quote}\small{
+    “there’s vomit on his sweater \boldblue{already}, mom’s \boldblue{spaghetti}}
+\end{quote}
+
+This showcases how the different types of rhyme placement might be combined to create long, flowing sequences of continual rhyming.
+
+\paragraph{Rhyme Schemes:\\[6pt]}
+\label{para:rhyme-schemes}
+
+There are so many different types of rhyme schemes, as to make it impossible to cover all of them here. I will, instead, go over a few of the most popular types, discussing what makes them so common. Generally, rhyme schemes are denoted in matching letters such as ABAB or AAAA, each letter simply denoting the rhyming pattern of a given line, all lines with identical letters containing rhyming pairs. It does, however, become a little harder to discern these types of schemes in rap songs, as the bars aren't as neatly split up in lines as with, say, poems. They do, however, function in the same way.
+
+\paragraph{\boldblue{A}\boldorange{B}\boldblue{A}\boldorange{B}:} is a commonly used rhyme scheme, with bars 1 \& 3 and 2 \& 4 containing rhyming pairs, and can also fairly often be found in rap songs. Examples of this type of rhyme scheme might be:
+
+\begin{quote}\small{
+    “it's just past \boldblue{two}, and I go to grab a \boldorange{shake},\\ i'm sneakin' past the \boldblue{you}, trying not to \boldorange{awake}"}
+\end{quote}
+
+\paragraph{\boldblue{AA}\boldorange{BB}:} very similar to the ABAB scheme above, but instead rhymes on the bars 1 \& 2 and then 3 \& 4, as in:
+
+\begin{quote}\small{
+    “open up the \boldblue{fridge}, hopin' the dog won't \boldblue{snitch},\\ getting out the \boldorange{milk}, just trying not to \boldorange{spill}"}
+\end{quote}
+
+\paragraph{\boldblue{A}\textbf{X}\boldblue{A}\textbf{X}:} is a bit different than the previous two, in that only bars 1 \& 3 rhyme, 2 \& 4, denoted by the X's, don't rhyme with anything. This allows for a lot of creative freedom, as they are not as restrained by finding rhyming pars. 
+
+\begin{quote}\small{
+    “gettin' out the \boldblue{blender} and pourin' in the goods,\\ prob ain't gettin' \boldblue{slender}, but likely getting full"}
+\end{quote}.
+
+Outside of these three rhyme schemes, there are a number of others such as \textit{monorhymes} (\boldblue{AAAA}), other versions of the \boldblue{A}\textbf{X}\boldblue{A}\textbf{X} scheme (\boldblue{A}\textbf{X}\boldblue{AA}, \boldblue{AA}\textbf{X}\boldblue{A}, etc.), enclosed rhymes (\boldblue{A}\boldorange{BB}\boldblue{A}) and many more.
+
+\subsection{Design Adaptation}
+\label{sec:design-adaptation}
+All of these features are important to keep in mind in the design of the model (and data), as they illuminate possibilities as well as potential shortcomings, with the design. When considering the structure of rap songs, with the aforementioned varieties, I decided to restrain the model as little as possible, in terms of the data that would be included. This meant that I would not sort out specific \hyperref[para:song-structure]{song structure constituents}, e.g. intros/outros, a task which would also have been both difficult and time-consuming, given that said structures weren't marked in the chosen dataset. This would therefore have required either an inordinate amount of annotation time or the creation of a system for automatic annotation, both of which were thoroughly out of scope of this study.
+
+This choice would also in theory model rap lyrics as broadly as possible, as everything would be included, which was also beneficial due to the relatively small amount of data for the chosen model architecture (RNN/LSTM). Additionally, to keep the model objective in line with the size of the dataset, I would not be attempt to generate entire songs, but rather longer verses. While more recent types of model architecture has provided some capabilities to model long-range dependencies, as example being the LSTM architecture I employ here, it is still a significant challenge to generate entire songs, without at least some form of human intervention\footnote{Here, human intervention might refer to stitching together a song from automatically generated verses, an example being generating verses and choruses separately using the same prompt, potentially using separate models i.e. a \textit{verse}-model and a \textit{chorus}-model, and then inserting the generated chorus(es) between each verse, according to the chosen \hyperref[para:song-structure]{structure}.}. This means that there will be made no attempts to have the model differentiate between generating verses / choruses, as to mirror the song structures discussed in \cref{para:song-structure}.
+
+Naturally, one of the most important features to emphasize will be \textit{rhymes}, and due to both its versatility and its ability to be indicate the quality and stylistic similarity to rap lyrics, I will be focusing primarily on \textit{assonance rhymes} and more specifically \textit{multisyllabic assonance rhymes}.
